@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    div(class='grid__row')
+        h2 Product Form
+    form(role="form" class="grid__row")
+        div(id="form-error-message")
+
+        div(class="grid__row")
+            label(class="grid__col-2" for="title") Product Title :
+            div(class="grid__col-10")
+                input(type='text', name='title', id='title', value="#{product.title}", class="textfield", required)
+
+        div(class="grid__row")
+            label(class="grid__col-2" for="description") Product Description :
+            div(class="grid__col-10")
+                textarea(name='description', id='description', value="#{product.description}", class="textfield")
+
+        div(class="grid__row")
+            label(class="grid__col-2" for="price") Product Price :
+            div(class="grid__col-10")
+                input(type='number', name='price', id='price', value='#{product.price}', class="textfield")
+
+        div(class="grid__row")
+            div(class="grid__col-2")
+            div(class="grid__col-10")
+                if isNew
+                    a(href="#add" onclick="submitSaveForm()" class='button button--blue margin') Save
+                else
+                    a(href="#edit" onclick="submitUpdateForm('#{product._id}')" class='button button--blue margin') Save
+                a(href="#{root}/app" class='button button--red margin') Cancel
+

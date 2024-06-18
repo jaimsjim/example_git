@@ -1,0 +1,32 @@
+extends layout
+
+block content
+    h1= title
+    div(class='fullwidth inline')
+        h2(class='inline') Product API List
+
+        a(href='./app', class='button button--blue margin right') Server Render Application!
+        a(href='./angularapp', class='button button--blue margin right') Angular Application!
+        a(href='./vueapp', class='button button--blue margin right') Vue Application!
+
+    - each api in apis
+        table(class="table")
+            thead(class="table__head")
+                tr
+                    th NAME
+                    th URL
+                    th METHOD
+                    th ACTION
+            tbody(class="table__body")
+                - each product in api.products
+                    tr
+                        td
+                            = product.name
+                        td
+                            = product.url
+                        td
+                            = product.method
+                        td
+                            a(href=product.url, class='button button--blue', target='blank') View
+
+

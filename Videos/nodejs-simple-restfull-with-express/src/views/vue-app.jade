@@ -1,0 +1,36 @@
+extends layout
+block css
+    style([v-cloak] { display: none; })
+block js
+    script(src="/javascripts/library/vue.min.js")
+    script(src="/javascripts/library/vue-resource.min.js")
+    script(src="/javascripts/vue-script/vue-store.js")
+    script(src="/javascripts/vue-script/vue-app.js")
+block content
+    div(class='basic-app-container' id="site")
+        div(class='basic-app-table', v-show="view.mode === 'table'", v-cloak)
+            div(class='fullwidth inline')
+                h2(class='inline') Product List
+                a(href='#form', @click="startInsert()", class='button button--blue margin right') Add New
+            div(id="form-error-message")
+            table(class="table")
+                thead(class="table__head")
+                    tr
+                        th No
+                        th Title
+                        th Description
+                        th Price
+                        th Last Update
+                        th Action
+                tbody(class="table__body")
+                    tr(v-for="product in products", v-cloak)
+                        td(v-text="$index+1")
+                        td(v-text="product.title")
+                        td(v-text="product.description")
+                        td(v-text="product.price")
+                        td(v-text="product.modified")
+                        td
+                            a(href='#form', @click="startEdit(product)", class='button button--blue margin') Update
+                            a(href='#delete', @click="remove(product)", class='button button--red margin') Delete
+        div(class='basic-app-form', v-show="view.mode === 'form'", v-cloak)
+            include vue-app-form

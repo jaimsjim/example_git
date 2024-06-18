@@ -1,0 +1,30 @@
+div(class='grid__row')
+    h2 Product Form
+form(role="form" class="grid__row")
+    div(id="form-error-message" ng-show="errormessage !== ''")
+        div(class="alert alert-danger")
+            strong Error! &nbsp; 
+            span(ng-bind="errormessage")
+
+    div(class="grid__row")
+        label(class="grid__col-2" for="title") Product Title :
+        div(class="grid__col-10")
+            input(type='text', name='title', id='title', ng-model="selectedProduct.title", class="textfield", required)
+
+    div(class="grid__row")
+        label(class="grid__col-2" for="description") Product Description :
+        div(class="grid__col-10")
+            textarea(name='description', id='description', ng-model="selectedProduct.description", class="textfield")
+
+    div(class="grid__row")
+        label(class="grid__col-2" for="price") Product Price :
+        div(class="grid__col-10")
+            input(type='number', name='price', id='price', ng-model="selectedProduct.price", class="textfield")
+
+    div(class="grid__row")
+        div(class="grid__col-2")
+        div(class="grid__col-10")
+            a(href="#insert" ng-click="angularSubmitSaveForm()" ng-show="isNewData" class='button button--blue margin') Save
+            a(href="#update" ng-click="angularSubmitUpdateForm()" ng-show="!isNewData" class='button button--blue margin') Save
+            a(href="#home" ng-click="goesToTable()" class='button button--red margin') Cancel
+

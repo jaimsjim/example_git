@@ -1,0 +1,30 @@
+div(class='grid__row')
+    h2 Product Form
+form(role="form" class="grid__row")
+    div(id="form-error-message" v-show="view.error !== ''")
+        div(class="alert alert-danger")
+            strong Error! &nbsp; 
+            span(v-text="view.error")
+
+    div(class="grid__row")
+        label(class="grid__col-2" for="title") Product Title :
+        div(class="grid__col-10")
+            input(type='text', name='title', id='title', v-model="product.title", class="textfield", required)
+
+    div(class="grid__row")
+        label(class="grid__col-2" for="description") Product Description :
+        div(class="grid__col-10")
+            textarea(name='description', id='description', v-model="product.description", class="textfield")
+
+    div(class="grid__row")
+        label(class="grid__col-2" for="price") Product Price :
+        div(class="grid__col-10")
+            input(type='number', name='price', id='price', v-model="product.price", class="textfield")
+
+    div(class="grid__row")
+        div(class="grid__col-2")
+        div(class="grid__col-10")
+            a(href="#insert", @click="doneInsert()", v-show="view.state === 'insert'", class='button button--blue margin') Save
+            a(href="#update", @click="doneEdit()", v-show="view.state !== 'insert'", class='button button--blue margin') Save
+            a(href="#home", @click="cancelEditMode()", class='button button--red margin') Cancel
+
